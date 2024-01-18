@@ -1,9 +1,8 @@
 package com.deposit.yogeshdawkhar.testcases;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -13,8 +12,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import com.deposit.yogeshdawkhar.constants.ErrorMessageContants;
@@ -44,13 +43,13 @@ public class AddNewUserTestCase extends HelperClass {
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 		} else if (browser.equalsIgnoreCase("ie")) {
-			WebDriverManager.iedriver().setup();
-			driver = new InternetExplorerDriver();
+			WebDriverManager.edgedriver().setup();
+			driver = new EdgeDriver();
 		} else {
 			ExtentReportLog.testCaseSkip("Driver not initialised");
 			System.exit(1);
 		}
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.navigate().refresh();
@@ -394,7 +393,7 @@ public class AddNewUserTestCase extends HelperClass {
 		AddNewUserPage pageObj = PageFactory.initElements(driver, AddNewUserPage.class);
 		pageObj.enterDetailsOnFormAndClickSubmit(nametext, emailtext, passwordtext, confirmpasswordtext);
 
-		Long id = pageObj.GetrecordID(nametext);
+		Long id = pageObj.getRecordID(nametext);
 		driver.navigate().to(getAllUserUrl);
 		List<WebElement> rowCount1 = driver.findElements(By.xpath("//tr[@id='" + id + "']/td"));
 		AssertionUtil.assertEquals(rowCount1.get(0).getText(), nametext,

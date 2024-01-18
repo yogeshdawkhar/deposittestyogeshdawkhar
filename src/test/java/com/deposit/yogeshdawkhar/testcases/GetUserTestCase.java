@@ -3,8 +3,7 @@ package com.deposit.yogeshdawkhar.testcases;
 import static io.restassured.RestAssured.get;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
+import java.time.Duration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -45,7 +44,7 @@ public class GetUserTestCase extends HelperClass {
 			ExtentReportLog.testCaseSkip("Driver not initialised");
 			System.exit(1);
 		}
-		driver.manage().timeouts().implicitlyWait(1, TimeUnit.MINUTES);
+		driver.manage().timeouts().implicitlyWait(Duration.ofMinutes(1));
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.navigate().refresh();

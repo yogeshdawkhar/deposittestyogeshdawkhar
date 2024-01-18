@@ -2,8 +2,6 @@ package com.deposit.yogeshdawkhar.util;
 
 import java.io.IOException;
 
-import org.junit.jupiter.engine.Constants;
-
 import com.deposit.yogeshdawkhar.helper.HelperClass;
 
 import okhttp3.OkHttpClient;

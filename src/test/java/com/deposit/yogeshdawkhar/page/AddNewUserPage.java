@@ -76,7 +76,7 @@ public class AddNewUserPage extends HelperClass {
 		ExtentReportLog.testCaseInfoWithImage("Submit Button clicked");
 	}
 
-	public long GetrecordID(String findRecord) {
+	public long getRecordID(String findRecord) {
 		Long id = null;
 		Response response = get(getAllUserUrlJson);
 		JSONArray ja = new JSONArray(response.asString());
